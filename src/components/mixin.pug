@@ -1,0 +1,81 @@
+mixin createMenu(menu, active)
+    each value, key in menu
+        a.menu__link( href= value class= (active == key) ? 'menu__link--active' : '' )= key
+        
+mixin carCard(data, modifier)
+    div(class=`car-card car-card--${modifier}`)
+        if modifier == 'wide'
+            h3.car-card__title= data.header
+            div.car-card__content-wrapper
+                div.car-card__info
+                    p.car-card__text= data.text
+                    button.button.car-card__button Подробнее
+                img.car-card__image(src= require("../images/" + data.image))
+        
+        else if modifier == 'right'
+            h3.car-card__title= data.header
+            p.car-card__text= data.text
+                a.car-card__link(href="#") &hellip;
+            img.car-card__image(src= require("../images/" + data.image))
+            button.button.car-card__button Подробнее
+
+        else
+            //- left и обычных sidebar
+            img.car-card__image(src= require("../images/" + data.image))
+            h3.car-card__title= data.header
+            p.car-card__text= data.text
+                if modifier == 'sidebar'
+                    a.car-card__link(href="#") &hellip;
+            if modifier != 'sidebar'
+                button.button.car-card__button Подробнее
+
+mixin leftSide(data)
+    each item, i in data
+        if i < 4 
+            div.sidebar-item
+                +carCard(item, 'sidebar')
+
+
+mixin head(title)
+    header.header
+        h2.header__title= title
+
+        form.search-box
+            input.search-box__input(type="text" name="q" placeholder="Поиск по сайту...")
+            button.search-box__button(type="submit") Найти
+
+
+
+mixin table(headTable, carsTable)
+    table.data-table
+        thead.data-table__head
+            tr.data-table__row 
+                each item in headTable 
+                
+                    th.data-table__header= item
+
+        tbody.data-table__body
+            each car in carsTable
+                tr.data-table__row
+                    td.data-table__cell=car.mark 
+                    td.data-table__cell=car.model
+                    td.data-table__cell=car.power
+                    td.data-table__cell=car.type
+                    td.data-table__cell=car.engine
+
+        //- table.data-table
+        //-     thead.data-table__head
+        //-         tr.data-table__row
+        //-             th.data-table__header Марка
+        //-             th.data-table__header Модель
+        //-             th.data-table__header Мощность (л.с.)
+        //-             th.data-table__header Тип кузова
+        //-             th.data-table__header Двигатель
+        //-     tbody.data-table__body
+        //-         each car in carsTable
+        //-             tr.data-table__row
+        //-                 td.data-table__cell= car.mark
+        //-                 td.data-table__cell= car.model
+        //-                 td.data-table__cell= car.power
+        //-                 td.data-table__cell= car.type
+        //-                 td.data-table__cell= car.engine

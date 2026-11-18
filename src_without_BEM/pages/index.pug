@@ -1,0 +1,35 @@
+extends template
+
+block nav
+    nav
+        +createMenu(dictMenu, 'Главная')
+        
+block content
+    div.images
+        each pict, i in listImages
+            if i == 0
+                a.big(href="car.html")
+                    img(src= require("../images/" + pict))
+            else                
+                - var size = (i % 3 == 0) ? 'big' : 'small'
+                img(class=size src= require("../images/" + pict))
+        
+    main
+        side
+            +leftSide(listSide)
+        center
+            front
+                div.card
+                    +sectionSide(listSections[0])
+                div.card.R
+                    +sectionTwo(listSections[1])    
+                div.card.W
+                    +sectionWide(listSections[2])
+
+        side
+            +leftSide(listSide2)
+
+block header 
+    +head(title)
+    
+

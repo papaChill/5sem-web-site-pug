@@ -1,0 +1,106 @@
+extends template
+
+block nav
+    nav.menu
+        +createMenu(dictMenu, 'Таблица')
+
+block header
+    +head("Таблица автомобилей")
+
+block content
+    div.table-page
+        form.table-controls
+        
+            fieldset.table-controls__section
+                details.table-controls__details
+                    summary.table-controls__summary
+                        strong График
+                    div.table-controls__content
+                        p.table-controls__text
+                            b Значение по оси Ox
+                        label.table-controls__label
+                            input.table-controls__radio(type="radio" name="ox" value="mark") 
+                            |  Марка
+                        br
+                        label.table-controls__label
+                            input.table-controls__radio(type="radio" name="ox" value="model") 
+                            |  Модель
+                        p.table-controls__text
+                            b Значение по оси Oy
+                        label.table-controls__label
+                            input.table-controls__checkbox(type="checkbox" name="oy" value="max") 
+                            |  Максимальная мощность
+                        br
+                        label.table-controls__label
+                            input.table-controls__checkbox(type="checkbox" name="oy" value="min") 
+                            |  Минимальная мощность
+
+            fieldset.table-controls__section
+                details.table-controls__details
+                    summary.table-controls__summary
+                        strong Фильтр
+                    div.table-controls__content
+                        p.table-controls__field
+                            label.table-controls__label Марка машины: 
+                                input.table-controls__input(type="text" name="mark" placeholder="Введите марку")
+                        p.table-controls__field
+                            label.table-controls__label Модель: 
+                                input.table-controls__input(type="text" name="model" placeholder="Введите модель")
+                        p.table-controls__field
+                            label.table-controls__label Тип кузова: 
+                                input.table-controls__input(type="text" name="type" placeholder="Введите тип кузова")
+                        p.table-controls__field
+                            label.table-controls__label Мощность: от 
+                                input.table-controls__input.table-controls__input--number(type="number" name="power_min")
+                                |  до 
+                                input.table-controls__input.table-controls__input--number(type="number" name="power_max")
+                        p.table-controls__field
+                            label.table-controls__label Двигатель: 
+                                input.table-controls__input(type="text" name="mark" placeholder="Введите тип двигателя")
+
+            fieldset.table-controls__section
+                details.table-controls__details
+                    summary.table-controls__summary
+                        strong Сортировка
+                    div.table-controls__content
+                        mixin sortLevel(label, name)
+                            p.table-controls__field= label
+                                select.table-controls__select(name=name)
+                                    option Нет
+                                    option Марка
+                                    option Модель
+                                    option Мощность
+                                    option Тип
+                                    option Двигатель
+                                |  по убыванию? 
+                                input.table-controls__checkbox(type="checkbox")
+
+                        +sortLevel('Первый уровень:', 'sort1')
+                        +sortLevel('Второй уровень:', 'sort2')
+                        +sortLevel('Третий уровень:', 'sort3')
+                        
+                        input.button.table-controls__submit(type="submit" value="Применить")
+
+        h2.table-page__title Список автомобилей
+        
+        - var headTable = ['Марка', 'Модель', 'Мощность', 'Тип кузова', 'Двигатель']
+        +table(headTable, carsTable)
+        //- table.data-table
+        //-     thead.data-table__head
+        //-         tr.data-table__row
+        //-             th.data-table__header Марка
+        //-             th.data-table__header Модель
+        //-             th.data-table__header Мощность (л.с.)
+        //-             th.data-table__header Тип кузова
+        //-             th.data-table__header Двигатель
+        //-     tbody.data-table__body
+        //-         each car in carsTable
+        //-             tr.data-table__row
+        //-                 td.data-table__cell= car.mark
+        //-                 td.data-table__cell= car.model
+        //-                 td.data-table__cell= car.power
+        //-                 td.data-table__cell= car.type
+        //-                 td.data-table__cell= car.engine
+
+
+//- создать миксин для построения таблицы которой в качествевек параметра списко с назв шапки и массив записи про машин

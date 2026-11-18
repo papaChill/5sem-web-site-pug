@@ -1,0 +1,23 @@
+extends template
+
+block nav
+    nav
+        +createMenu(dictMenu, 'Описание')
+
+block header
+    +head(carDetail.title)
+
+
+block content
+    car
+        .inside
+            img(src= require("../images/" + carDetail.image) alt= carDetail.title)
+            .container
+                h3 Описание модели
+                p= carDetail.description
+                h3 Технические характеристики
+                ul
+                    each spec in carDetail.specs
+                        li= spec
+                h3 Интересные факты
+                p= carDetail.facts

@@ -1,0 +1,365 @@
+back(size)
+    background-color #f1f1f1
+    box-shadow 4px 5px 10px rgba(0, 0, 0, 0.4)
+    padding: size + "%"
+    margin 0 auto 1% auto 
+        
+section-style(number)   
+    align-items center
+    back(number)    
+    & h3
+        grid-column 1/-1
+        margin 0
+        text-align center
+    & img
+        border-radius 3%
+        width: 100%    
+    & p 
+        text-align justify
+    & ul
+        padding 0
+        text-align left
+        width 100%
+        max-width 500px   
+
+
+colorText = #6f6d6d
+
+html
+  color colorText
+
+.header
+    display flex
+    justify-content space-between
+    align-items center
+    back(0)
+    background-color #f87777 
+    &__title
+        color #f8f8f8
+        margin 0
+        padding 15px
+
+.search-box
+    display flex
+    padding 15px    
+    &__input
+        padding 5px 10px
+        border none
+        border-radius 4px 0 0 4px       
+    &__button
+        padding 5px 10px
+        border none
+        background-color #a80404
+        color white
+        border-radius 0 4px 4px 0 
+        &:hover
+            background-color #5c0808
+        
+
+.menu
+    back(0)
+    margin 0 auto
+    text-align center
+    
+    &__link
+        display inline-block
+        padding 1%
+        color colorText
+        text-decoration none        
+        &:hover
+        &--active
+            background-color #f87777
+            color #f8f8f8
+
+
+.gallery
+    display grid
+    grid-template-columns repeat(3, 1fr)
+    grid-auto-rows 180px 
+    grid-gap 10px
+    width 80%
+    margin 0 auto
+    back(1)
+
+    &__item
+        display block
+        width 100%
+        height 100%
+        overflow hidden
+        &--big
+            grid-column span 2     
+        &--small
+            grid-column span 1
+    &__img
+        width 100%
+        height 100%
+        object-fit cover
+        display block
+
+        transition transform 0.3s ease
+        &:hover
+            transform scale(1.05)
+        
+        
+.table-page
+    width 90%
+    margin 20px auto
+    back(1)
+    padding 20px
+    &__title
+        text-align center
+        margin-top 30px
+        color colorText
+
+.table-controls
+    &__section
+        border 1px solid #ccc
+        border-radius 5px
+        margin-bottom 10px
+        padding 0
+    
+    &__summary
+        font-size 1.2rem
+        padding 10px
+        background-color #f9f9f9
+        &:hover
+            background-color #f1f1f1
+
+    &__content
+        padding 15px
+
+    &__label
+        display inline-block
+        margin-bottom 5px
+
+    &__input
+        padding 5px
+        border 1px solid #ccc
+        border-radius 4px
+        &--number
+            width 80px
+
+    &__select
+        margin 0 10px
+        padding 3px
+
+    &__submit
+        margin-top 10px
+
+.data-table
+    width 100%
+    border-collapse collapse
+    margin-top 20px
+    
+    &__header
+        background-color #f87777
+        color white
+        padding 12px
+        border 1px solid #ddd
+        text-align left
+    
+    &__cell
+        padding 10px
+        border 1px solid #ddd
+    
+    &__row
+        &:nth-child(even)
+            background-color #f2f2f2
+        &:hover
+            background-color #ffeaea
+
+
+
+.car-detail
+    width 80%
+    margin 0 auto 20px auto
+    section-style(2)
+    display block
+    text-align center
+    border-radius 3%
+    overflow hidden
+
+    &__layout
+        display grid
+        grid-template-columns 1fr 1fr
+        grid-gap 5%
+
+    &__image
+        object-fit cover
+        height 100%
+        width 100%
+
+    &__info
+        display flex
+        flex-direction column
+        padding 2%
+        text-align left
+
+    &__subtitle
+        margin-top 20px
+        margin-bottom 10px
+        color colorText
+        display inline-block
+        width fit-content
+
+    &__text
+        text-align justify
+        line-height 1.6
+        margin-bottom 15px
+
+    &__specs-list
+        list-style none
+        padding 0
+        margin 0
+
+    &__spec-item
+        padding 5px 0
+        border-bottom 1px solid #eee
+        &:before
+            content "• "
+            color #f87777
+            font-weight bold
+
+.button
+    padding 10px 20px                
+    background-color #f87777                
+    color white                
+    border none                
+    border-radius 5px                                        
+    cursor pointer
+    &:hover
+        background-color #5c0808
+
+.main-layout
+    display grid
+    grid-template-columns 1fr 5fr 1fr
+    grid-gap 3%
+    width 95%
+    margin 30px auto 30px auto
+    min-height 500px 
+    
+    &__sidebar
+        display flex
+        flex-direction column
+        margin-bottom 20px
+    
+    &__center
+        // центр
+
+.cards-grid
+    display grid
+    grid-template-columns repeat(2, 1fr)
+    grid-gap 5%
+    
+    &__item
+        &--wide
+            grid-column span 2
+
+.car-card
+    section-style(2)
+    border-radius 3%
+    display flex
+    flex-direction column
+    height 100%
+
+    &__title
+        font-size 1.2rem
+        margin-bottom 10px
+    
+    &__image
+        width 100%
+        object-fit cover
+        border-radius 3%
+
+    &__text
+        text-align justify
+        flex-grow 1
+
+    &__button
+        margin-top 15px
+        align-self flex-start
+
+    &--left
+        text-align left
+
+    &--right
+        text-align right
+        & .car-card__button
+            align-self flex-end
+
+    &--sidebar
+        margin-bottom 15px
+        text-align center
+        & .car-card__title
+            font-size 1rem
+            margin-top 10px
+        & .car-card__image
+            height 150px
+            object-fit cover
+            
+
+    &--wide
+        flex-direction column
+        & .car-card__title
+            font-size 1.5rem
+        & .car-card__content-wrapper
+            display flex
+            align-items stretch
+        & .car-card__info
+            flex 2
+            padding 20px
+            text-align right
+        & .car-card__image
+            width 50%
+            height auto
+
+
+.footer
+    background-color colorText
+    margin-top 20px
+    &__copyright
+        padding 15px
+        color #f8f8f8
+        margin 0
+        text-align center
+
+
+@media (max-width: 700px)
+
+    .car-detail
+        width 95%
+        &__layout
+            grid-template-columns 1fr
+        &__image
+            height 300px
+
+    .main-layout
+        grid-template-columns 1fr
+        &__sidebar:last-of-type
+            display none
+            
+    .cards-grid
+        grid-template-columns 1fr
+        &__item--wide
+            grid-column 1
+            
+    .car-card--wide
+        & .car-card__content-wrapper
+            flex-direction column
+        & .car-card__image
+            width 100%
+                        
+    car
+        & .inside
+            grid-template-columns 1fr
+            
+    .gallery
+        grid-template-columns 1fr
+        grid-auto-rows auto
+        
+        &__item--big
+            grid-column 1
+            
+    section
+        grid-template-columns 1fr
+

@@ -1,0 +1,53 @@
+mixin createMenu(menu, active)
+    each value, key in menu
+        if active == key
+            a.active(href= value)= key
+        else
+            a(href= value)= key
+        
+mixin leftSide(data)
+
+    each item, i in data
+        if i < 4 
+            div.artic           
+                +sectionOne(item)
+
+mixin sectionOne(data)
+
+    img(src= require("../images/"  + data.image))
+    h3= data.header
+    p= data.text
+        a(href="#") &hellip;
+
+
+mixin sectionTwo(data)
+    div.R
+        h3= data.header
+        p= data.text
+            a(href="#") &hellip;
+        img(src= require("../images/"  + data.image))
+        button.btn Подробнее
+    
+mixin sectionWide(data)
+    h3= data.header
+    .info        
+        p= data.text
+        button.btn Подробнее
+    img(src= require("../images/" + data.image))
+
+mixin sectionSide(data)
+    div.L
+        img(src= require("../images/" + data.image))
+        h3= data.header
+                
+        p= data.text
+        button.btn Подробнее
+
+mixin head(title)
+    .main-header
+        title #{title}
+        h2=title
+
+        .search-box
+            input(type="text" name="q" placeholder="Поиск по сайту...")
+            button(type="submit") Найти

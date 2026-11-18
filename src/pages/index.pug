@@ -1,0 +1,39 @@
+extends template
+
+block nav
+    nav.menu
+        +createMenu(dictMenu, 'Главная')
+        
+block content
+    div.gallery
+        each pict, i in listImages
+            if i == 0
+                a.gallery__item.gallery__item--big(href="car.html")
+                    img.gallery__img(src= require("../images/" + pict))
+            else                
+                - var sizeMod = (i % 3 == 0) ? 'gallery__item--big' : 'gallery__item--small'
+                div.gallery__item(class=sizeMod)
+                    img.gallery__img(src= require("../images/" + pict))
+        
+    main.main-layout
+        aside.main-layout__sidebar
+            +leftSide(listSide)
+        
+        div.main-layout__center
+            div.cards-grid
+                .cards-grid__item
+                    +carCard(listSections[0], 'left')
+                
+                .cards-grid__item
+                    +carCard(listSections[1], 'right')
+                
+                .cards-grid__item.cards-grid__item--wide
+                    +carCard(listSections[2], 'wide')
+
+        aside.main-layout__sidebar
+            +leftSide(listSide2)
+
+block header 
+    +head(title)
+    
+

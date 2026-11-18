@@ -1,0 +1,99 @@
+extends template
+
+
+block nav
+    nav
+        +createMenu(dictMenu, 'Таблица')
+
+block header
+    +head("Таблица автомобилей")
+
+
+block content
+    .container-table
+        form
+            fieldset
+                details
+                    summary
+                        strong График
+                    p
+                        b Значение по оси Ox
+                    label
+                        input(type="radio" name="ox" value="mark") 
+                        |  Марка
+                    br
+                    label
+                        input(type="radio" name="ox" value="model") 
+                        |  Модель
+                    p
+                        b Значение по оси Oy
+                    label
+                        input(type="checkbox" name="oy" value="max") 
+                        |  Максимальная мощность
+                    br
+                    label
+                        input(type="checkbox" name="oy" value="min") 
+                        |  Минимальная мощность
+
+            fieldset
+                details
+                    summary
+                        strong Фильтр
+                    p
+                        label Марка машины: 
+                            input(type="text" name="mark" placeholder="Введите марку")
+                    p
+                        label Модель: 
+                            input(type="text" name="model" placeholder="Введите модель")
+                    p
+                        label Тип кузова: 
+                            input(type="text" name="type" placeholder="Введите тип кузова")
+                    p
+                        label Мощность: от 
+                            input(type="number" name="power_min" min="0" max="5000")
+                            |  до 
+                            input(type="number" name="power_max" min="0" max="5000")
+                    p
+                        label Двигатель: 
+                            input(type="text" name="engine" placeholder="Введите двигатель")
+
+            fieldset
+                details
+                    summary
+                        strong Сортировка
+                    
+                    mixin sortLevel(label, name)
+                        p= label
+                            select(name=name)
+                                option Нет
+                                option Марка
+                                option Модель
+                                option Мощность
+                                option Тип
+                                option Двигатель
+                            |  по убыванию? 
+                            input(type="checkbox")
+
+                    +sortLevel('Первый уровень:', 'sort1')
+                    +sortLevel('Второй уровень:', 'sort2')
+                    +sortLevel('Третий уровень:', 'sort3')
+                    
+                    input(type="submit" value="Сортировать")
+
+        h2 Список автомобилей
+        table.cars-data-table
+            thead
+                tr
+                    th Марка
+                    th Модель
+                    th Мощность (л.с.)
+                    th Тип кузова
+                    th Двигатель
+            tbody
+                each car in carsTable
+                    tr
+                        td= car.mark
+                        td= car.model
+                        td= car.power
+                        td= car.type
+                        td= car.engine
